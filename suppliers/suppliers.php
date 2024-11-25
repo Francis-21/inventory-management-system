@@ -9,7 +9,7 @@ $query = "SELECT * FROM suppliers";
 
 // Add a search condition if the search term is provided
 if ($search) {
-    $query .= " WHERE supplier_name LIKE :search OR contact LIKE :search";
+    $query .= " WHERE supplier_name LIKE :search OR contact_info LIKE :search";
 }
 
 $stmt = $conn->prepare($query);
@@ -30,6 +30,7 @@ $suppliers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supplier Management</title>
     <style>
+        <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -140,6 +141,7 @@ $suppliers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         }
     </style>
+    </style>
 </head>
 <body>
 <div class="breadcrums">
@@ -175,7 +177,7 @@ $suppliers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tr>
                     <td><?= htmlspecialchars($supplier['id']) ?></td>
                     <td><?= htmlspecialchars($supplier['supplier_name']) ?></td>
-                    <td><?= htmlspecialchars($supplier['contact']) ?></td>
+                    <td><?= htmlspecialchars($supplier['contact_info']) ?></td>
                 </tr>
             <?php endforeach; ?>
         <?php endif; ?>
